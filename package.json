@@ -1,0 +1,35 @@
+{
+  "name": "ai-whip",
+  "version": "0.1.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1",
+    "build": "next build",
+    "start": "next start --hostname 127.0.0.1",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "verify": "npm run lint && npm run typecheck && npm test && npm run build"
+  },
+  "dependencies": {
+    "next": "16.4.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "typescript": "5.9.3",
+    "zod": "4.6.6"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.64.0",
+    "@tailwindcss/postcss": "4.3.3",
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "16.4.0",
+    "tailwindcss": "4.3.3",
+    "vitest": "5.0.4"
+  },
+  "type": "module"
+}

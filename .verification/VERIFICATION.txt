@@ -1,0 +1,892 @@
+AI WHIP EVIDENCE LEDGER v1
+CHANGED_FIELD: deterministic acceptance verdict; unsupported completion claims; real execution evidence
+MODIFIED_FILE [TypeScript module]: C:\Users\ASUS\Downloads\New folder (4)\ai-whip\src\lib\detector.ts
+DIFF_FILE [unified patch]: C:\Users\ASUS\Downloads\New folder (4)\ai-whip\.verification\DIFF_FILE.patch
+VERIFICATION [UTF-8 text]: C:\Users\ASUS\Downloads\New folder (4)\ai-whip\.verification\VERIFICATION.txt
+ROLLBACK [POSIX shell executable]: C:\Users\ASUS\Downloads\New folder (4)\ai-whip\.verification\ROLLBACK.sh
+REQUEST_SHA256: dded02b2f4db3fa0a8ad42bc6c52d2741027dd2721b3508652916b767d2a16da
+BASELINE_KIND: initial new-project detector; no pre-existing application replaced
+
+BASELINE
+COMMAND: node --experimental-strip-types --disable-warning=ExperimentalWarning .verification/detector-check.mjs src/lib/detector.ts
+INPUT: .verification/detector-input.json
+STDOUT: "{\"verdict\":\"unverified\",\"criteria\":[{\"id\":\"test\",\"status\":\"unverified\"}],\"findings\":[]}\n"
+STDERR: "(node:23668) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///C:/Users/ASUS/Downloads/New%20folder%20(4)/ai-whip/src/lib/detector.ts is not specified and it doesn't parse as CommonJS.\nReparsing as ES module because module syntax was detected. This incurs a performance overhead.\nTo eliminate this warning, add \"type\": \"module\" to C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\package.json.\n(Use `node --trace-warnings ...` to show where the warning was created)\n"
+EXIT_STATUS: 0
+ORIGINAL_DETECTOR_SHA256: de44a825bbed854c6095923738b6e894dc55b4ca570b1a7303489dbb24d02b21
+
+BASELINE
+COMMAND: node --experimental-strip-types --disable-warning=ExperimentalWarning .verification/detector-check.mjs src/lib/detector.ts
+ARGV: ["node","--experimental-strip-types","--disable-warning=ExperimentalWarning",".verification/detector-check.mjs","src/lib/detector.ts"]
+INPUT: .verification/detector-input.json
+STDOUT: "{\"verdict\":\"unverified\",\"criteria\":[{\"id\":\"test\",\"status\":\"unverified\"}],\"findings\":[]}\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+TYPECHECK-INITIAL
+COMMAND: npm run typecheck
+ARGV: ["npm","run","typecheck"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 typecheck\n> tsc --noEmit\n\nsrc/lib/executor.ts(35,9): error TS2741: Property 'NODE_ENV' is missing in type '{ PATH: string; HOME: string; USERPROFILE: string; TMP: string; TEMP: string; TMPDIR: string; LANG: string; CI: string; NO_COLOR: string; }' but required in type 'ProcessEnv'.\r\n"
+STDERR: ""
+EXIT_STATUS: 2
+
+LINT-INITIAL
+COMMAND: npm run lint
+ARGV: ["npm","run","lint"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 lint\n> eslint .\n\n\nC:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\postcss.config.mjs\n  1:1  warning  Assign object to a variable before exporting as module default  import/no-anonymous-default-export\n\nC:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\src\\components\\office.tsx\n  33:26   error  Error: Calling setState synchronously within an effect can trigger cascading renders\n\nEffects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\n* Update external systems with the latest state from React.\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\n\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).\n\nC:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\src\\components\\office.tsx:33:26\n  31 |     catch (err) { const text = (err as Error).message; if (text === \"Authentication required.\") setAuthenticated(false); else setError(text); setLoading(false); }\n  32 |   }, []);\n> 33 |   useEffect(() => { void refresh(); const timer = setInterval(() => void refresh(), 1500); return () => clearInterval(timer); }, [refresh]);\n     |                          ^^^^^^^ Avoid calling setState() directly within an effect\n  34 |   useEffect(() => { if (!message) return; const timer = setTimeout(() => setMessage(null), 9000); return () => clearTimeout(timer); }, [message]);\n  35 |   const selected = tasks.find(t => t.id === selectedId), latest = selected?.attempts.at(-1), attempt = attemptSelection === \"latest\" ? latest : selected?.attempts.find(a => String(a.number) === attemptSelection), evaluation = attempt?.evaluation;\n  36 |   const active = tasks.filter(t => running.includes(t.status)), waiting = tasks.filter(t => t.status.startsWith(\"awaiting\")), shipped = tasks.filter(t => t.status === \"completed\");  react-hooks/set-state-in-effect\n  65:164  error  Do not use an `<a>` element to navigate to `/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @next/next/no-html-link-for-pages\n\n✖ 3 problems (2 errors, 1 warning)\n\n"
+STDERR: ""
+EXIT_STATUS: 1
+
+TYPECHECK-INITIAL
+COMMAND: npm run typecheck
+ARGV: ["npm","run","typecheck"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 typecheck\n> tsc --noEmit\n\nsrc/lib/executor.ts(35,9): error TS2741: Property 'NODE_ENV' is missing in type '{ PATH: string; HOME: string; USERPROFILE: string; TMP: string; TEMP: string; TMPDIR: string; LANG: string; CI: string; NO_COLOR: string; }' but required in type 'ProcessEnv'.\r\n"
+STDERR: ""
+EXIT_STATUS: 2
+
+LINT-INITIAL
+COMMAND: npm run lint
+ARGV: ["npm","run","lint"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 lint\n> eslint .\n\n\nC:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\postcss.config.mjs\n  1:1  warning  Assign object to a variable before exporting as module default  import/no-anonymous-default-export\n\nC:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\src\\components\\office.tsx\n  33:26   error  Error: Calling setState synchronously within an effect can trigger cascading renders\n\nEffects are intended to synchronize state between React and external systems such as manually updating the DOM, state management libraries, or other platform APIs. In general, the body of an effect should do one or both of the following:\n* Update external systems with the latest state from React.\n* Subscribe for updates from some external system, calling setState in a callback function when external state changes.\n\nCalling setState synchronously within an effect body causes cascading renders that can hurt performance, and is not recommended. (https://react.dev/learn/you-might-not-need-an-effect).\n\nC:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\src\\components\\office.tsx:33:26\n  31 |     catch (err) { const text = (err as Error).message; if (text === \"Authentication required.\") setAuthenticated(false); else setError(text); setLoading(false); }\n  32 |   }, []);\n> 33 |   useEffect(() => { void refresh(); const timer = setInterval(() => void refresh(), 1500); return () => clearInterval(timer); }, [refresh]);\n     |                          ^^^^^^^ Avoid calling setState() directly within an effect\n  34 |   useEffect(() => { if (!message) return; const timer = setTimeout(() => setMessage(null), 9000); return () => clearTimeout(timer); }, [message]);\n  35 |   const selected = tasks.find(t => t.id === selectedId), latest = selected?.attempts.at(-1), attempt = attemptSelection === \"latest\" ? latest : selected?.attempts.find(a => String(a.number) === attemptSelection), evaluation = attempt?.evaluation;\n  36 |   const active = tasks.filter(t => running.includes(t.status)), waiting = tasks.filter(t => t.status.startsWith(\"awaiting\")), shipped = tasks.filter(t => t.status === \"completed\");  react-hooks/set-state-in-effect\n  65:164  error  Do not use an `<a>` element to navigate to `/`. Use `<Link />` from `next/link` instead. See: https://nextjs.org/docs/messages/no-html-link-for-pages                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            @next/next/no-html-link-for-pages\n\n✖ 3 problems (2 errors, 1 warning)\n\n"
+STDERR: ""
+EXIT_STATUS: 1
+
+TEST-INITIAL
+COMMAND: npm test
+ARGV: ["npm","test"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 test\n> vitest run\n\n\n RUN  v5.0.4 C:/Users/ASUS/Downloads/New folder (4)/ai-whip\n\n\n Test Files  5 passed (5)\n      Tests  51 passed (51)\n   Start at  18:57:05\n   Duration  16.77s (tests 54%, import 42%, transform 4%)\n\n    Isolate  5 workers spawned · ~374ms startup each (spawn + environment, per file)\n             at least ~1.49s faster with isolate: false — reuses workers across files instead of one per file\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+TYPECHECK-2
+COMMAND: npm run typecheck
+ARGV: ["npm","run","typecheck"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 typecheck\n> tsc --noEmit\n\nsrc/lib/executor.ts(35,9): error TS2741: Property 'NODE_ENV' is missing in type '{ PATH: string; HOME: string; USERPROFILE: string; TMP: string; TEMP: string; TMPDIR: string; LANG: string; CI: string; NO_COLOR: string; }' but required in type 'ProcessEnv'.\r\n"
+STDERR: ""
+EXIT_STATUS: 2
+
+LINT-2
+COMMAND: npm run lint
+ARGV: ["npm","run","lint"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 lint\n> eslint .\n\n\nC:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\postcss.config.mjs\n  1:1  warning  Assign object to a variable before exporting as module default  import/no-anonymous-default-export\n\n✖ 1 problem (0 errors, 1 warning)\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+TYPECHECK-3
+COMMAND: npm run typecheck
+ARGV: ["npm","run","typecheck"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 typecheck\n> tsc --noEmit\n\nsrc/lib/executor.ts(35,9): error TS2741: Property 'NODE_ENV' is missing in type '{ PATH: string; HOME: string; USERPROFILE: string; TMP: string; TEMP: string; TMPDIR: string; LANG: string; CI: string; NO_COLOR: string; }' but required in type 'ProcessEnv'.\r\n"
+STDERR: ""
+EXIT_STATUS: 2
+
+LINT-3
+COMMAND: npm run lint
+ARGV: ["npm","run","lint"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 lint\n> eslint .\n\n\nC:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\postcss.config.mjs\n  1:1  warning  Assign object to a variable before exporting as module default  import/no-anonymous-default-export\n\n✖ 1 problem (0 errors, 1 warning)\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+BUILD-INITIAL
+COMMAND: npm run build
+ARGV: ["npm","run","build"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 build\n> next build\n\n▲ Next.js 16.4.0 (Turbopack)\n✓ Running next.config.ts took 1043ms\n\n  Creating an optimized production build ...\n✓ Compiled successfully in 22.8s\n  Running TypeScript ...\nsrc/lib/executor.ts(35,9): error TS2741: Property 'NODE_ENV' is missing in type '{ PATH: string; HOME: string; USERPROFILE: string; TMP: string; TEMP: string; TMPDIR: string; LANG: string; CI: string; NO_COLOR: string; }' but required in type 'ProcessEnv'.\r\n"
+STDERR: "Failed to type check.\n\nTurbopack build encountered 3 warnings:\n./src/lib/workspace.ts:7:30\nWarning: Dynamic filesystem access causes tracing of the whole project\n  \u001b[90m 5 |\u001b[0m ...{ \u001b[33mFileChange\u001b[0m, \u001b[33mTaskInput\u001b[0m } \u001b[36mfrom\u001b[0m \u001b[32m\"./domain\"\u001b[0m;\n  \u001b[90m 6 |\u001b[0m ...\n\u001b[33m\u001b[1m>\u001b[0m \u001b[90m 7 |\u001b[0m ... dataDir = () => path.resolve(process.env.\u001b[33mAI_WHIP_DATA_DIR\u001b[0m || \u001b[32m\".data\"\u001b[0m);\n  \u001b[90m   |\u001b[0m                     \u001b[33m\u001b[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m\n  \u001b[90m 8 |\u001b[0m ...d = \u001b[36mnew\u001b[0m \u001b[33mSet\u001b[0m([\u001b[32m\".git\"\u001b[0m, \u001b[32m\"node_modules\"\u001b[0m, \u001b[32m\".next\"\u001b[0m, \u001b[32m\".data\"\u001b[0m, \u001b[32m\".verification\"\u001b[0m, \u001b[32m\".ssh\"\u001b[0m, \u001b[32m\"dist\"\u001b[0m,.\u001b[32m..\u001b[0m\n  \u001b[90m 9 |\u001b[0m ... \u001b[36mfunction\u001b[0m snapshot(root: string): \u001b[33mPromise\u001b[0m<\u001b[33mRecord\u001b[0m<string, string>> {\n  \u001b[90m10 |\u001b[0m ...s: \u001b[33mRecord\u001b[0m<string, string> = {};\n\nStatic analysis determined that this filesystem access causes the whole project to be traced and included in the output.\nThis is usually unintentional and leads to all source files (including the public folder) to be deployed as part of the server code.\nThis can slow down deployments or lead to failures when size limits are exceeded.\nTo resolve this, you can\n- make sure the path is statically scoped to some subfolder, for example path.join(process.cwd(), 'data', bar), or\n- only use them in development, or\n- opt out by adding an ignore comment to the highlighted call: path.resolve(/*turbopackIgnore: true*/ ...), or\n- remove them.\n\nImport traces:\n  #1 [App Route]:\n    ./src/lib/workspace.ts\n    ./src/app/api/[...path]/route.ts\n\n  #2 [App Route]:\n    ./src/lib/workspace.ts\n    ./src/lib/security.ts\n    ./src/app/api/[...path]/route.ts\n\n\n./src/lib/workspace.ts:40:94\nWarning: Dynamic filesystem access causes tracing of the whole project\n  \u001b[90m38 |\u001b[0m ...\n  \u001b[90m39 |\u001b[0m ...\n\u001b[33m\u001b[1m>\u001b[0m \u001b[90m40 |\u001b[0m ...) : safePath(path.resolve(process.env.\u001b[33mAI_WHIP_PROJECTS_ROOT\u001b[0m || \u001b[32m\"projects\"\u001b[0m), input.proje...\n  \u001b[90m   |\u001b[0m                 \u001b[33m\u001b[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m\n  \u001b[90m41 |\u001b[0m ...resolve(process.env.\u001b[33mAI_WHIP_PROJECTS_ROOT\u001b[0m || \u001b[32m\"projects\"\u001b[0m);\n  \u001b[90m42 |\u001b[0m ...\n  \u001b[90m43 |\u001b[0m ...\n\nStatic analysis determined that this filesystem access causes the whole project to be traced and included in the output.\nThis is usually unintentional and leads to all source files (including the public folder) to be deployed as part of the server code.\nThis can slow down deployments or lead to failures when size limits are exceeded.\nTo resolve this, you can\n- make sure the path is statically scoped to some subfolder, for example path.join(process.cwd(), 'data', bar), or\n- only use them in development, or\n- opt out by adding an ignore comment to the highlighted call: path.resolve(/*turbopackIgnore: true*/ ...), or\n- remove them.\n\nImport traces:\n  #1 [App Route]:\n    ./src/lib/workspace.ts\n    ./src/app/api/[...path]/route.ts\n\n  #2 [App Route]:\n    ./src/lib/workspace.ts\n    ./src/lib/security.ts\n    ./src/app/api/[...path]/route.ts\n\n\n./src/lib/workspace.ts:41:76\nWarning: Dynamic filesystem access causes tracing of the whole project\n  \u001b[90m39 |\u001b[0m ...\u001b[33mnput\u001b[0m) {\n  \u001b[90m40 |\u001b[0m ...\u001b[32mures/tiny-project\"\u001b[0m) : safePath(path.resolve(process.env.\u001b[33mAI_WHIP_PROJECTS_ROOT\u001b[0m || \u001b[32m\"proje...\u001b[0m\n\u001b[33m\u001b[1m>\u001b[0m \u001b[90m41 |\u001b[0m ...\u001b[32mfixtures\"\u001b[0m) : path.resolve(process.env.\u001b[33mAI_WHIP_PROJECTS_ROOT\u001b[0m || \u001b[32m\"projects\"\u001b[0m);\n  \u001b[90m   |\u001b[0m                 \u001b[33m\u001b[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m\n  \u001b[90m42 |\u001b[0m ...\n  \u001b[90m43 |\u001b[0m ...\n  \u001b[90m44 |\u001b[0m ...\u001b[32mcontains no importable text files.\"\u001b[0m);\n\nStatic analysis determined that this filesystem access causes the whole project to be traced and included in the output.\nThis is usually unintentional and leads to all source files (including the public folder) to be deployed as part of the server code.\nThis can slow down deployments or lead to failures when size limits are exceeded.\nTo resolve this, you can\n- make sure the path is statically scoped to some subfolder, for example path.join(process.cwd(), 'data', bar), or\n- only use them in development, or\n- opt out by adding an ignore comment to the highlighted call: path.resolve(/*turbopackIgnore: true*/ ...), or\n- remove them.\n\nImport traces:\n  #1 [App Route]:\n    ./src/lib/workspace.ts\n    ./src/app/api/[...path]/route.ts\n\n  #2 [App Route]:\n    ./src/lib/workspace.ts\n    ./src/lib/security.ts\n    ./src/app/api/[...path]/route.ts\n\n\n"
+EXIT_STATUS: 1
+
+BUILD-2
+COMMAND: npm run build
+ARGV: ["npm","run","build"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 build\n> next build\n\n▲ Next.js 16.4.0 (Turbopack)\n✓ Running next.config.ts took 31ms\n\n  Creating an optimized production build ...\n✓ Compiled successfully in 1189ms\n  Running TypeScript ...\nsrc/lib/executor.ts(35,9): error TS2741: Property 'NODE_ENV' is missing in type '{ PATH: string; HOME: string; USERPROFILE: string; TMP: string; TEMP: string; TMPDIR: string; LANG: string; CI: string; NO_COLOR: string; }' but required in type 'ProcessEnv'.\r\n"
+STDERR: "Failed to type check.\n\nTurbopack build encountered 3 warnings:\n./src/lib/workspace.ts:7:30\nWarning: Dynamic filesystem access causes tracing of the whole project\n  \u001b[90m 5 |\u001b[0m ...{ \u001b[33mFileChange\u001b[0m, \u001b[33mTaskInput\u001b[0m } \u001b[36mfrom\u001b[0m \u001b[32m\"./domain\"\u001b[0m;\n  \u001b[90m 6 |\u001b[0m ...\n\u001b[33m\u001b[1m>\u001b[0m \u001b[90m 7 |\u001b[0m ... dataDir = () => path.resolve(process.env.\u001b[33mAI_WHIP_DATA_DIR\u001b[0m || \u001b[32m\".data\"\u001b[0m);\n  \u001b[90m   |\u001b[0m                     \u001b[33m\u001b[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m\n  \u001b[90m 8 |\u001b[0m ...d = \u001b[36mnew\u001b[0m \u001b[33mSet\u001b[0m([\u001b[32m\".git\"\u001b[0m, \u001b[32m\"node_modules\"\u001b[0m, \u001b[32m\".next\"\u001b[0m, \u001b[32m\".data\"\u001b[0m, \u001b[32m\".verification\"\u001b[0m, \u001b[32m\".ssh\"\u001b[0m, \u001b[32m\"dist\"\u001b[0m,.\u001b[32m..\u001b[0m\n  \u001b[90m 9 |\u001b[0m ... \u001b[36mfunction\u001b[0m snapshot(root: string): \u001b[33mPromise\u001b[0m<\u001b[33mRecord\u001b[0m<string, string>> {\n  \u001b[90m10 |\u001b[0m ...s: \u001b[33mRecord\u001b[0m<string, string> = {};\n\nStatic analysis determined that this filesystem access causes the whole project to be traced and included in the output.\nThis is usually unintentional and leads to all source files (including the public folder) to be deployed as part of the server code.\nThis can slow down deployments or lead to failures when size limits are exceeded.\nTo resolve this, you can\n- make sure the path is statically scoped to some subfolder, for example path.join(process.cwd(), 'data', bar), or\n- only use them in development, or\n- opt out by adding an ignore comment to the highlighted call: path.resolve(/*turbopackIgnore: true*/ ...), or\n- remove them.\n\nImport traces:\n  #1 [App Route]:\n    ./src/lib/workspace.ts\n    ./src/app/api/[...path]/route.ts\n\n  #2 [App Route]:\n    ./src/lib/workspace.ts\n    ./src/lib/security.ts\n    ./src/app/api/[...path]/route.ts\n\n\n./src/lib/workspace.ts:40:94\nWarning: Dynamic filesystem access causes tracing of the whole project\n  \u001b[90m38 |\u001b[0m ...\n  \u001b[90m39 |\u001b[0m ...\n\u001b[33m\u001b[1m>\u001b[0m \u001b[90m40 |\u001b[0m ...) : safePath(path.resolve(process.env.\u001b[33mAI_WHIP_PROJECTS_ROOT\u001b[0m || \u001b[32m\"projects\"\u001b[0m), input.proje...\n  \u001b[90m   |\u001b[0m                 \u001b[33m\u001b[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m\n  \u001b[90m41 |\u001b[0m ...resolve(process.env.\u001b[33mAI_WHIP_PROJECTS_ROOT\u001b[0m || \u001b[32m\"projects\"\u001b[0m);\n  \u001b[90m42 |\u001b[0m ...\n  \u001b[90m43 |\u001b[0m ...\n\nStatic analysis determined that this filesystem access causes the whole project to be traced and included in the output.\nThis is usually unintentional and leads to all source files (including the public folder) to be deployed as part of the server code.\nThis can slow down deployments or lead to failures when size limits are exceeded.\nTo resolve this, you can\n- make sure the path is statically scoped to some subfolder, for example path.join(process.cwd(), 'data', bar), or\n- only use them in development, or\n- opt out by adding an ignore comment to the highlighted call: path.resolve(/*turbopackIgnore: true*/ ...), or\n- remove them.\n\nImport traces:\n  #1 [App Route]:\n    ./src/lib/workspace.ts\n    ./src/app/api/[...path]/route.ts\n\n  #2 [App Route]:\n    ./src/lib/workspace.ts\n    ./src/lib/security.ts\n    ./src/app/api/[...path]/route.ts\n\n\n./src/lib/workspace.ts:41:76\nWarning: Dynamic filesystem access causes tracing of the whole project\n  \u001b[90m39 |\u001b[0m ...\u001b[33mnput\u001b[0m) {\n  \u001b[90m40 |\u001b[0m ...\u001b[32mures/tiny-project\"\u001b[0m) : safePath(path.resolve(process.env.\u001b[33mAI_WHIP_PROJECTS_ROOT\u001b[0m || \u001b[32m\"proje...\u001b[0m\n\u001b[33m\u001b[1m>\u001b[0m \u001b[90m41 |\u001b[0m ...\u001b[32mfixtures\"\u001b[0m) : path.resolve(process.env.\u001b[33mAI_WHIP_PROJECTS_ROOT\u001b[0m || \u001b[32m\"projects\"\u001b[0m);\n  \u001b[90m   |\u001b[0m                 \u001b[33m\u001b[1m^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\u001b[0m\n  \u001b[90m42 |\u001b[0m ...\n  \u001b[90m43 |\u001b[0m ...\n  \u001b[90m44 |\u001b[0m ...\u001b[32mcontains no importable text files.\"\u001b[0m);\n\nStatic analysis determined that this filesystem access causes the whole project to be traced and included in the output.\nThis is usually unintentional and leads to all source files (including the public folder) to be deployed as part of the server code.\nThis can slow down deployments or lead to failures when size limits are exceeded.\nTo resolve this, you can\n- make sure the path is statically scoped to some subfolder, for example path.join(process.cwd(), 'data', bar), or\n- only use them in development, or\n- opt out by adding an ignore comment to the highlighted call: path.resolve(/*turbopackIgnore: true*/ ...), or\n- remove them.\n\nImport traces:\n  #1 [App Route]:\n    ./src/lib/workspace.ts\n    ./src/app/api/[...path]/route.ts\n\n  #2 [App Route]:\n    ./src/lib/workspace.ts\n    ./src/lib/security.ts\n    ./src/app/api/[...path]/route.ts\n\n\n"
+EXIT_STATUS: 1
+
+TYPECHECK-4
+COMMAND: npm run typecheck
+ARGV: ["npm","run","typecheck"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 typecheck\n> tsc --noEmit\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+LINT-4
+COMMAND: npm run lint
+ARGV: ["npm","run","lint"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 lint\n> eslint .\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+BUILD-3
+COMMAND: npm run build
+ARGV: ["npm","run","build"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 build\n> next build\n\n▲ Next.js 16.4.0 (Turbopack)\n✓ Running next.config.ts took 31ms\n\n  Creating an optimized production build ...\n✓ Compiled successfully in 803ms\n  Running TypeScript ...\n  Finished TypeScript in 2.6s ...\n  Collecting page data using 5 workers ...\n  Generating static pages using 5 workers (0/3) ...\n✓ Generating static pages using 5 workers (3/3) in 1979ms\n  Finalizing page optimization ...\n\nRoute (app)\n┌ ○ /\n├ ○ /_not-found\n└ ƒ /api/[...path]\n\n\n○  (Static)   prerendered as static content\nƒ  (Dynamic)  server-rendered on demand\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+E2E-INITIAL
+COMMAND: npm run test:e2e
+ARGV: ["npm","run","test:e2e"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 test:e2e\n> playwright test\n\n\nRunning 3 tests using 1 worker\n\n  x  1 [chromium] › tests\\e2e\\office.spec.ts:3:1 › desktop: honest empty office, approved failure, repair, proof, final sign-off (2ms)\n  x  2 [chromium] › tests\\e2e\\office.spec.ts:47:1 › navigation and mobile: no overflow; controls remain available (2ms)\n  ok 3 [chromium] › tests\\e2e\\office.spec.ts:59:1 › API: cross-origin mutations rejected; invalid criteria rejected; cancellation recorded (3.3s)\n\n\n  1) [chromium] › tests\\e2e\\office.spec.ts:3:1 › desktop: honest empty office, approved failure, repair, proof, final sign-off \n\n    Error: browserType.launch: Executable doesn't exist at C:\\Users\\ASUS\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1248\\chrome-headless-shell-win64\\chrome-headless-shell.exe\n    ╔════════════════════════════════════════════════════════════╗\n    ║ Looks like Playwright was just installed or updated.       ║\n    ║ Please run the following command to download new browsers: ║\n    ║                                                            ║\n    ║     npx playwright install                                 ║\n    ║                                                            ║\n    ║ <3 Playwright Team                                         ║\n    ╚════════════════════════════════════════════════════════════╝\n        at C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\node_modules\\playwright\\lib\\worker\\workerProcessEntry.js:190:33)\n        at C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\node_modules\\playwright\\lib\\worker\\workerProcessEntry.js:152:109)\n        at C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\node_modules\\playwright\\lib\\worker\\workerProcessEntry.js:1134:17)\n        at C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\node_modules\\playwright\\lib\\worker\\workerProcessEntry.js:1645:24)\n        at C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\node_modules\\playwright\\lib\\worker\\workerProcessEntry.js:1640:7)\n\n    Error Context: test-results\\office-desktop-honest-empt-5b69c-repair-proof-final-sign-off-chromium\\error-context.md\n\n    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────\n    test-results\\office-desktop-honest-empt-5b69c-repair-proof-final-sign-off-chromium\\trace.zip\n    Usage:\n\n        npx playwright show-trace test-results\\office-desktop-honest-empt-5b69c-repair-proof-final-sign-off-chromium\\trace.zip\n\n    ────────────────────────────────────────────────────────────────────────────────────────────────\n\n  2) [chromium] › tests\\e2e\\office.spec.ts:47:1 › navigation and mobile: no overflow; controls remain available \n\n    Error: browserType.launch: Executable doesn't exist at C:\\Users\\ASUS\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1248\\chrome-headless-shell-win64\\chrome-headless-shell.exe\n    ╔════════════════════════════════════════════════════════════╗\n    ║ Looks like Playwright was just installed or updated.       ║\n    ║ Please run the following command to download new browsers: ║\n    ║                                                            ║\n    ║     npx playwright install                                 ║\n    ║                                                            ║\n    ║ <3 Playwright Team                                         ║\n    ╚════════════════════════════════════════════════════════════╝\n        at C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\node_modules\\playwright\\lib\\worker\\workerProcessEntry.js:190:33)\n        at C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\node_modules\\playwright\\lib\\worker\\workerProcessEntry.js:152:109)\n        at C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\node_modules\\playwright\\lib\\worker\\workerProcessEntry.js:1134:17)\n        at C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\node_modules\\playwright\\lib\\worker\\workerProcessEntry.js:1645:24)\n        at C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\node_modules\\playwright\\lib\\worker\\workerProcessEntry.js:1640:7)\n\n    Error Context: test-results\\office-navigation-and-mobi-3e1f9-w-controls-remain-available-chromium\\error-context.md\n\n    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────\n    test-results\\office-navigation-and-mobi-3e1f9-w-controls-remain-available-chromium\\trace.zip\n    Usage:\n\n        npx playwright show-trace test-results\\office-navigation-and-mobi-3e1f9-w-controls-remain-available-chromium\\trace.zip\n\n    ────────────────────────────────────────────────────────────────────────────────────────────────\n\n  2 failed\n    [chromium] › tests\\e2e\\office.spec.ts:3:1 › desktop: honest empty office, approved failure, repair, proof, final sign-off \n    [chromium] › tests\\e2e\\office.spec.ts:47:1 › navigation and mobile: no overflow; controls remain available \n  1 passed (24.1s)\n"
+STDERR: "[WebServer] (node:2584) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:23904) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:17504) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n(node:4888) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:16936) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:28724) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:25968) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:26096) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n"
+EXIT_STATUS: 1
+
+E2E-2
+COMMAND: npm run test:e2e
+ARGV: ["npm","run","test:e2e"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 test:e2e\n> playwright test\n\n\nRunning 3 tests using 1 worker\n\n  x  1 [chromium] › tests\\e2e\\office.spec.ts:3:1 › desktop: honest empty office, approved failure, repair, proof, final sign-off (2ms)\n  x  2 [chromium] › tests\\e2e\\office.spec.ts:47:1 › navigation and mobile: no overflow; controls remain available (2ms)\n  ok 3 [chromium] › tests\\e2e\\office.spec.ts:59:1 › API: cross-origin mutations rejected; invalid criteria rejected; cancellation recorded (3.0s)\n\n\n  1) [chromium] › tests\\e2e\\office.spec.ts:3:1 › desktop: honest empty office, approved failure, repair, proof, final sign-off \n\n    Error: browserType.launch: Executable doesn't exist at C:\\Users\\ASUS\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1248\\chrome-headless-shell-win64\\chrome-headless-shell.exe\n    ╔════════════════════════════════════════════════════════════╗\n    ║ Looks like Playwright was just installed or updated.       ║\n    ║ Please run the following command to download new browsers: ║\n    ║                                                            ║\n    ║     npx playwright install                                 ║\n    ║                                                            ║\n    ║ <3 Playwright Team                                         ║\n    ╚════════════════════════════════════════════════════════════╝\n        at C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\node_modules\\playwright\\lib\\worker\\workerProcessEntry.js:190:33)\n        at C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\node_modules\\playwright\\lib\\worker\\workerProcessEntry.js:152:109)\n        at C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\node_modules\\playwright\\lib\\worker\\workerProcessEntry.js:1134:17)\n        at C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\node_modules\\playwright\\lib\\worker\\workerProcessEntry.js:1645:24)\n        at C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\node_modules\\playwright\\lib\\worker\\workerProcessEntry.js:1640:7)\n\n    Error Context: test-results\\office-desktop-honest-empt-5b69c-repair-proof-final-sign-off-chromium\\error-context.md\n\n    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────\n    test-results\\office-desktop-honest-empt-5b69c-repair-proof-final-sign-off-chromium\\trace.zip\n    Usage:\n\n        npx playwright show-trace test-results\\office-desktop-honest-empt-5b69c-repair-proof-final-sign-off-chromium\\trace.zip\n\n    ────────────────────────────────────────────────────────────────────────────────────────────────\n\n  2) [chromium] › tests\\e2e\\office.spec.ts:47:1 › navigation and mobile: no overflow; controls remain available \n\n    Error: browserType.launch: Executable doesn't exist at C:\\Users\\ASUS\\AppData\\Local\\ms-playwright\\chromium_headless_shell-1248\\chrome-headless-shell-win64\\chrome-headless-shell.exe\n    ╔════════════════════════════════════════════════════════════╗\n    ║ Looks like Playwright was just installed or updated.       ║\n    ║ Please run the following command to download new browsers: ║\n    ║                                                            ║\n    ║     npx playwright install                                 ║\n    ║                                                            ║\n    ║ <3 Playwright Team                                         ║\n    ╚════════════════════════════════════════════════════════════╝\n        at C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\node_modules\\playwright\\lib\\worker\\workerProcessEntry.js:190:33)\n        at C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\node_modules\\playwright\\lib\\worker\\workerProcessEntry.js:152:109)\n        at C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\node_modules\\playwright\\lib\\worker\\workerProcessEntry.js:1134:17)\n        at C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\node_modules\\playwright\\lib\\worker\\workerProcessEntry.js:1645:24)\n        at C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\node_modules\\playwright\\lib\\worker\\workerProcessEntry.js:1640:7)\n\n    Error Context: test-results\\office-navigation-and-mobi-3e1f9-w-controls-remain-available-chromium\\error-context.md\n\n    attachment #2: trace (application/zip) ─────────────────────────────────────────────────────────\n    test-results\\office-navigation-and-mobi-3e1f9-w-controls-remain-available-chromium\\trace.zip\n    Usage:\n\n        npx playwright show-trace test-results\\office-navigation-and-mobi-3e1f9-w-controls-remain-available-chromium\\trace.zip\n\n    ────────────────────────────────────────────────────────────────────────────────────────────────\n\n  2 failed\n    [chromium] › tests\\e2e\\office.spec.ts:3:1 › desktop: honest empty office, approved failure, repair, proof, final sign-off \n    [chromium] › tests\\e2e\\office.spec.ts:47:1 › navigation and mobile: no overflow; controls remain available \n  1 passed (9.1s)\n"
+STDERR: "[WebServer] (node:24244) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:29296) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:10072) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n(node:15156) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:12936) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n(node:25992) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:26988) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:6364) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n"
+EXIT_STATUS: 1
+
+TYPECHECK-5
+COMMAND: npm run typecheck
+ARGV: ["npm","run","typecheck"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 typecheck\n> tsc --noEmit\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+TEST-2
+COMMAND: npm test
+ARGV: ["npm","test"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 test\n> vitest run\n\n\n RUN  v5.0.4 C:/Users/ASUS/Downloads/New folder (4)/ai-whip\n\n\n Test Files  5 passed (5)\n      Tests  54 passed (54)\n   Start at  19:03:15\n   Duration  12.48s (tests 79%, import 19%, transform 2%)\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+PLAYWRIGHT-INSTALL
+COMMAND: node node_modules/playwright/cli.js install chromium
+ARGV: ["node","node_modules/playwright/cli.js","install","chromium"]
+INPUT: repository / documented configuration
+STDOUT: ""
+STDERR: ""
+EXIT_STATUS: 0
+
+E2E-CHROME
+COMMAND: npm run test:e2e
+ARGV: ["npm","run","test:e2e"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 test:e2e\n> playwright test\n\n\nRunning 3 tests using 1 worker\n\n  x  1 [chromium] › tests\\e2e\\office.spec.ts:3:1 › desktop: honest empty office, approved failure, repair, proof, final sign-off (12.8s)\n  ok 2 [chromium] › tests\\e2e\\office.spec.ts:47:1 › navigation and mobile: no overflow; controls remain available (1.7s)\n  ok 3 [chromium] › tests\\e2e\\office.spec.ts:59:1 › API: cross-origin mutations rejected; invalid criteria rejected; cancellation recorded (241ms)\n\n\n  1) [chromium] › tests\\e2e\\office.spec.ts:3:1 › desktop: honest empty office, approved failure, repair, proof, final sign-off \n\n    Error: expect(locator).toBeVisible() failed\n\n    Locator: getByRole('dialog').getByText('a + b')\n    Expected: visible\n    Error: strict mode violation: getByRole('dialog').getByText('a + b') resolved to 2 elements:\n        1) <pre>export function sum(a, b) { return a + b; }↵</pre> aka getByText('export function sum(a, b) {').nth(1)\n        2) <pre>export function sum(a, b) { return a + b; }↵</pre> aka getByText('export function sum(a, b) {').nth(2)\n\n    Call log:\n      - Expect \"toBeVisible\" getByRole('dialog').getByText('a + b') with timeout 5000ms\n      - waiting for getByRole('dialog').getByText('a + b')\n\n        at C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\tests\\e2e\\office.spec.ts:28:59)\n        at C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\node_modules\\playwright\\lib\\worker\\workerProcessEntry.js:1654:9)\n        at C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\node_modules\\playwright\\lib\\worker\\workerProcessEntry.js:1134:11)\n        at C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\node_modules\\playwright\\lib\\worker\\workerProcessEntry.js:1652:7)\n\n    attachment #1: screenshot (image/png) ──────────────────────────────────────────────────────────\n    test-results\\office-desktop-honest-empt-5b69c-repair-proof-final-sign-off-chromium\\test-failed-1.png\n    ────────────────────────────────────────────────────────────────────────────────────────────────\n\n    Error Context: test-results\\office-desktop-honest-empt-5b69c-repair-proof-final-sign-off-chromium\\error-context.md\n\n    attachment #3: trace (application/zip) ─────────────────────────────────────────────────────────\n    test-results\\office-desktop-honest-empt-5b69c-repair-proof-final-sign-off-chromium\\trace.zip\n    Usage:\n\n        npx playwright show-trace test-results\\office-desktop-honest-empt-5b69c-repair-proof-final-sign-off-chromium\\trace.zip\n\n    ────────────────────────────────────────────────────────────────────────────────────────────────\n\n  1 failed\n    [chromium] › tests\\e2e\\office.spec.ts:3:1 › desktop: honest empty office, approved failure, repair, proof, final sign-off \n  2 passed (22.1s)\n"
+STDERR: "[WebServer] (node:25264) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:4808) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:12816) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n(node:21288) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:29076) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:29644) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:29676) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:3928) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:440) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:27884) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:3104) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n(node:29700) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:11292) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:30364) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n"
+EXIT_STATUS: 1
+
+E2E-CHROME-2
+COMMAND: npm run test:e2e
+ARGV: ["npm","run","test:e2e"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 test:e2e\n> playwright test\n\n\nRunning 3 tests using 1 worker\n\n  ok 1 [chromium] › tests\\e2e\\office.spec.ts:3:1 › desktop: honest empty office, approved failure, repair, proof, final sign-off (13.1s)\n  ok 2 [chromium] › tests\\e2e\\office.spec.ts:47:1 › navigation and mobile: no overflow; controls remain available (2.3s)\n  ok 3 [chromium] › tests\\e2e\\office.spec.ts:59:1 › API: cross-origin mutations rejected; invalid criteria rejected; cancellation recorded (275ms)\n\n  3 passed (21.4s)\n"
+STDERR: "[WebServer] (node:2920) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:30044) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:21868) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n(node:7460) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n(Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:11308) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:30076) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:29784) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:27572) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:29156) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:16952) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:23228) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:19964) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:14108) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n[WebServer] (node:25776) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.\n[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)\n"
+EXIT_STATUS: 0
+
+TYPECHECK-6
+COMMAND: npm run typecheck
+ARGV: ["npm","run","typecheck"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 typecheck\n> tsc --noEmit\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+LINT-5
+COMMAND: npm run lint
+ARGV: ["npm","run","lint"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 lint\n> eslint .\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+TYPECHECK-7
+COMMAND: npm run typecheck
+ARGV: ["npm","run","typecheck"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 typecheck\n> tsc --noEmit\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+LINT-6
+COMMAND: npm run lint
+ARGV: ["npm","run","lint"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 lint\n> eslint .\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+TEST-3
+COMMAND: npm test
+ARGV: ["npm","test"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 test\n> vitest run\n\n\n RUN  v5.0.4 C:/Users/ASUS/Downloads/New folder (4)/ai-whip\n\n\n Test Files  5 passed (5)\n      Tests  54 passed (54)\n   Start at  19:11:59\n   Duration  9.30s (tests 70%, import 26%, transform 4%)\n\n    Isolate  5 workers spawned · ~124ms startup each (spawn + environment, per file)\n             at least ~497ms faster with isolate: false — reuses workers across files instead of one per file\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+TEST-4
+COMMAND: npm test
+ARGV: ["npm","test"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 test\n> vitest run\n\n\n RUN  v5.0.4 C:/Users/ASUS/Downloads/New folder (4)/ai-whip\n\n\n Test Files  5 passed (5)\n      Tests  58 passed (58)\n   Start at  19:12:39\n   Duration  10.29s (tests 73%, import 23%, transform 4%)\n\n    Isolate  5 workers spawned · ~134ms startup each (spawn + environment, per file)\n             at least ~537ms faster with isolate: false — reuses workers across files instead of one per file\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+TEST-4
+COMMAND: npm test
+ARGV: ["npm","test"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 test\n> vitest run\n\n\n RUN  v5.0.4 C:/Users/ASUS/Downloads/New folder (4)/ai-whip\n\n\n Test Files  5 passed (5)\n      Tests  58 passed (58)\n   Start at  19:13:00\n   Duration  9.21s (tests 78%, import 21%, transform 1%)\n\n    Isolate  5 workers spawned · ~136ms startup each (spawn + environment, per file)\n             at least ~545ms faster with isolate: false — reuses workers across files instead of one per file\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+TYPECHECK-8
+COMMAND: npm run typecheck
+ARGV: ["npm","run","typecheck"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 typecheck\n> tsc --noEmit\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+TEST-5
+COMMAND: npm test
+ARGV: ["npm","test"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 test\n> vitest run\n\n\n RUN  v5.0.4 C:/Users/ASUS/Downloads/New folder (4)/ai-whip\n\n\n Test Files  5 passed (5)\n      Tests  60 passed (60)\n   Start at  19:14:24\n   Duration  10.71s (tests 79%, import 19%, transform 2%)\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+TYPECHECK-9
+COMMAND: npm run typecheck
+ARGV: ["npm","run","typecheck"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 typecheck\n> tsc --noEmit\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+LINT-7
+COMMAND: npm run lint
+ARGV: ["npm","run","lint"]
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 lint\n> eslint .\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+LINT-FINAL
+COMMAND: npm run lint
+ARGV: ["npm","run","lint"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 lint\n> eslint .\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+TYPECHECK-FINAL
+COMMAND: npm run typecheck
+ARGV: ["npm","run","typecheck"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 typecheck\n> tsc --noEmit\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+TEST-FINAL
+COMMAND: npm test
+ARGV: ["npm","test"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 test\n> vitest run\n\n\n RUN  v5.0.4 C:/Users/ASUS/Downloads/New folder (4)/ai-whip\n\n\n Test Files  5 passed (5)\n      Tests  60 passed (60)\n   Start at  19:15:52\n   Duration  10.49s (tests 80%, import 18%, transform 1%)\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+AUDIT-FINAL
+COMMAND: npm audit --omit=dev --audit-level=high
+ARGV: ["npm","audit","--omit=dev","--audit-level=high"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "found 0 vulnerabilities\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+BUILD-FINAL
+COMMAND: npm run build
+ARGV: ["npm","run","build"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 build\n> next build\n\n▲ Next.js 16.4.0 (Turbopack)\n✓ Running next.config.ts took 34ms\n\n  Creating an optimized production build ...\n✓ Compiled successfully in 1646ms\n  Running TypeScript ...\n  Finished TypeScript in 3.2s ...\n  Collecting page data using 5 workers ...\n  Generating static pages using 5 workers (0/3) ...\n✓ Generating static pages using 5 workers (3/3) in 571ms\n  Finalizing page optimization ...\n\nRoute (app)\n┌ ○ /\n├ ○ /_not-found\n└ ƒ /api/[...path]\n\n\n○  (Static)   prerendered as static content\nƒ  (Dynamic)  server-rendered on demand\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+E2E-PRODUCTION
+COMMAND: npm run test:e2e
+ARGV: ["npm","run","test:e2e"]
+ENVIRONMENT: {"PLAYWRIGHT_CHANNEL":"chrome","AI_WHIP_TEST_PRODUCTION":"true"}
+INPUT: Production build; 1440px desktop; 390px mobile; fixture addition task; same-origin API validation.
+STDOUT: "\n> ai-whip@0.1.0 test:e2e\n> playwright test\n\n\nRunning 3 tests using 1 worker\n\n  ok 1 [chromium] › tests\\e2e\\office.spec.ts:3:1 › desktop: honest empty office, approved failure, repair, proof, final sign-off (7.7s)\n  ok 2 [chromium] › tests\\e2e\\office.spec.ts:50:1 › navigation and mobile: no overflow; controls remain available (1.6s)\n  ok 3 [chromium] › tests\\e2e\\office.spec.ts:62:1 › API: cross-origin mutations rejected; invalid criteria rejected; cancellation recorded (169ms)\n\n  3 passed (12.0s)\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+MODIFIED_DETECTOR_SHA256: 52e32d800eafb91987427592a90dfcffea886af143f489495682a1bb24b3de5c
+MODIFIED_FIELD: evaluate required acceptance criteria; observed failed exits; exact unsupported completion claims; AST advisory signals
+TRANSACTION_INPUT_JSON: {  "criteria": [    {      "id": "test",      "kind": "check_passes",      "label": "Tests pass",      "required": true,      "checkId": "tests"    }  ],  "checks": [    {      "id": "tests",      "label": "Node tests",      "kind": "test",      "command": [        "node",        "--test"      ],      "scope": "full",      "exitCode": 1,      "stdout": "# tests 1\n# pass 0\n# fail 1",      "stderr": "",      "durationMs": 12,      "timedOut": false,      "outputLimited": false,      "tests": {        "total": 1,        "passed": 0,        "failed": 1,        "skipped": 0      }    }  ],  "files": [],  "claim": "All tests passed. Fixed.",  "previous": [],  "manualApprovals": []}
+
+BASELINE-PRISTINE
+COMMAND: node --experimental-strip-types --disable-warning=ExperimentalWarning .verification/detector-check.mjs .verification/pristine.detector.ts
+ARGV: ["node","--experimental-strip-types","--disable-warning=ExperimentalWarning",".verification/detector-check.mjs",".verification/pristine.detector.ts"]
+ENVIRONMENT: {}
+INPUT: .verification/detector-input.json (exact literal JSON recorded in ledger)
+STDOUT: "{\"verdict\":\"unverified\",\"criteria\":[{\"id\":\"test\",\"status\":\"unverified\"}],\"findings\":[]}\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+MODIFIED
+COMMAND: node --experimental-strip-types --disable-warning=ExperimentalWarning .verification/detector-check.mjs src/lib/detector.ts
+ARGV: ["node","--experimental-strip-types","--disable-warning=ExperimentalWarning",".verification/detector-check.mjs","src/lib/detector.ts"]
+ENVIRONMENT: {}
+INPUT: .verification/detector-input.json (exact literal JSON recorded in ledger)
+STDOUT: "{\"verdict\":\"failed\",\"criteria\":[{\"id\":\"test\",\"status\":\"failed\"}],\"findings\":[\"criterion_failed\",\"contradicted_test_claim\",\"contradicted_completion_claim\"]}\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+DIFF-CHECK
+COMMAND: git apply --reverse --check .verification/DIFF_FILE.patch
+ARGV: ["git","apply","--reverse","--check",".verification/DIFF_FILE.patch"]
+ENVIRONMENT: {}
+INPUT: .verification/detector-input.json (exact literal JSON recorded in ledger)
+STDOUT: ""
+STDERR: ""
+EXIT_STATUS: 0
+
+ROLLBACK-EXECUTABLE
+COMMAND: C:\Program Files\Git\bin\bash.exe -c chmod +x .verification/ROLLBACK.sh && test -x .verification/ROLLBACK.sh && printf executable\n
+ARGV: ["C:\\Program Files\\Git\\bin\\bash.exe","-c","chmod +x .verification/ROLLBACK.sh && test -x .verification/ROLLBACK.sh && printf executable\\n"]
+ENVIRONMENT: {}
+INPUT: .verification/detector-input.json (exact literal JSON recorded in ledger)
+STDOUT: "executablen"
+STDERR: ""
+EXIT_STATUS: 0
+
+ROLLBACK
+COMMAND: C:\Program Files\Git\bin\bash.exe .verification/ROLLBACK.sh .verification/rollback-copy.ts
+ARGV: ["C:\\Program Files\\Git\\bin\\bash.exe",".verification/ROLLBACK.sh",".verification/rollback-copy.ts"]
+ENVIRONMENT: {}
+INPUT: .verification/detector-input.json (exact literal JSON recorded in ledger)
+STDOUT: "Restored initial detector bytes.\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+ROLLBACK-RESTORED
+COMMAND: node --experimental-strip-types --disable-warning=ExperimentalWarning .verification/detector-check.mjs .verification/rollback-copy.ts
+ARGV: ["node","--experimental-strip-types","--disable-warning=ExperimentalWarning",".verification/detector-check.mjs",".verification/rollback-copy.ts"]
+ENVIRONMENT: {}
+INPUT: .verification/detector-input.json (exact literal JSON recorded in ledger)
+STDOUT: "{\"verdict\":\"unverified\",\"criteria\":[{\"id\":\"test\",\"status\":\"unverified\"}],\"findings\":[]}\n"
+STDERR: ""
+EXIT_STATUS: 0
+RESTORED_SHA256: de44a825bbed854c6095923738b6e894dc55b4ca570b1a7303489dbb24d02b21
+RESTORED_STATUS: exact pristine detector bytes and neutral Unverified behavior; application detector remains modified
+
+BUILD-FINAL-2
+COMMAND: npm run build
+ARGV: ["npm","run","build"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 build\n> next build\n\n▲ Next.js 16.4.0 (Turbopack)\n✓ Running next.config.ts took 34ms\n\n  Creating an optimized production build ...\n✓ Compiled successfully in 1236ms\n  Running TypeScript ...\n  Finished TypeScript in 2.6s ...\n  Collecting page data using 5 workers ...\n  Generating static pages using 5 workers (0/3) ...\n✓ Generating static pages using 5 workers (3/3) in 604ms\n  Finalizing page optimization ...\n\nRoute (app)\n┌ ○ /\n├ ○ /_not-found\n└ ƒ /api/[...path]\n\n\n○  (Static)   prerendered as static content\nƒ  (Dynamic)  server-rendered on demand\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+E2E-FINAL
+COMMAND: npm run test:e2e
+ARGV: ["npm","run","test:e2e"]
+ENVIRONMENT: {"PLAYWRIGHT_CHANNEL":"chrome","AI_WHIP_TEST_PRODUCTION":"true"}
+INPUT: Production build; desktop 1440x1100; mobile 390x844; real fixture processes; keyless API.
+STDOUT: "\n> ai-whip@0.1.0 test:e2e\n> playwright test\n\n\nRunning 3 tests using 1 worker\n\n  ok 1 [chromium] › tests\\e2e\\office.spec.ts:3:1 › desktop: honest empty office, approved failure, repair, proof, final sign-off (7.8s)\n  ok 2 [chromium] › tests\\e2e\\office.spec.ts:51:1 › navigation and mobile: no overflow; controls remain available (1.7s)\n  ok 3 [chromium] › tests\\e2e\\office.spec.ts:63:1 › API: cross-origin mutations rejected; invalid criteria rejected; cancellation recorded (175ms)\n\n  3 passed (12.4s)\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+LIVE-PRODUCTION
+COMMAND: node .verification/live-check.mjs
+ARGV: ["node",".verification/live-check.mjs"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "GET / 200; production page rendered\nGET /api/config 200; realAgentConfigured=false; executionMode=restricted_local_approval\nGET /api/tasks 200; 0 real tasks; no seeded records\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+LINT-RELEASE
+COMMAND: npm run lint
+ARGV: ["npm","run","lint"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 lint\n> eslint .\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+TYPECHECK-RELEASE
+COMMAND: npm run typecheck
+ARGV: ["npm","run","typecheck"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 typecheck\n> tsc --noEmit\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+TEST-RELEASE
+COMMAND: npm test
+ARGV: ["npm","test"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 test\n> vitest run\n\n\n RUN  v5.0.4 C:/Users/ASUS/Downloads/New folder (4)/ai-whip\n\n\n Test Files  5 passed (5)\n      Tests  60 passed (60)\n   Start at  19:21:03\n   Duration  10.38s (tests 79%, import 19%, transform 2%)\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+BUILD-RELEASE
+COMMAND: npm run build
+ARGV: ["npm","run","build"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 build\n> next build\n\n▲ Next.js 16.4.0 (Turbopack)\n✓ Running next.config.ts took 30ms\n\n  Creating an optimized production build ...\n✓ Compiled successfully in 1231ms\n  Running TypeScript ...\n  Finished TypeScript in 3.0s ...\n  Collecting page data using 5 workers ...\n  Generating static pages using 5 workers (0/3) ...\n✓ Generating static pages using 5 workers (3/3) in 604ms\n  Finalizing page optimization ...\n\nRoute (app)\n┌ ○ /\n├ ○ /_not-found\n└ ƒ /api/[...path]\n\n\n○  (Static)   prerendered as static content\nƒ  (Dynamic)  server-rendered on demand\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+CLEAN-INSTALL
+COMMAND: npm ci --no-audit --no-fund
+ARGV: ["npm","ci","--no-audit","--no-fund"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\nadded 384 packages in 1m\n"
+STDERR: "npm warn ERESOLVE overriding peer dependency\nnpm warn While resolving: eslint-plugin-import@2.32.0\nnpm warn Found: eslint@10.12.0\nnpm warn node_modules/eslint\nnpm warn   dev eslint@\"^10.12.0\" from the root project\nnpm warn   10 more (@eslint-community/eslint-utils, ...)\nnpm warn\nnpm warn Could not resolve dependency:\nnpm warn peer eslint@\"^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8 || ^9\" from eslint-plugin-import@2.32.0\nnpm warn node_modules/eslint-config-next/node_modules/eslint-plugin-import\nnpm warn   eslint-plugin-import@\"^2.32.0\" from eslint-config-next@16.4.0\nnpm warn   node_modules/eslint-config-next\nnpm warn   1 more (eslint-import-resolver-typescript)\nnpm warn\nnpm warn Conflicting peer dependency: eslint@9.39.5\nnpm warn node_modules/eslint\nnpm warn   peer eslint@\"^2 || ^3 || ^4 || ^5 || ^6 || ^7.2.0 || ^8 || ^9\" from eslint-plugin-import@2.32.0\nnpm warn   node_modules/eslint-config-next/node_modules/eslint-plugin-import\nnpm warn     eslint-plugin-import@\"^2.32.0\" from eslint-config-next@16.4.0\nnpm warn     node_modules/eslint-config-next\nnpm warn     1 more (eslint-import-resolver-typescript)\nnpm warn ERESOLVE overriding peer dependency\nnpm warn While resolving: eslint-plugin-jsx-a11y@6.10.2\nnpm warn Found: eslint@10.12.0\nnpm warn node_modules/eslint\nnpm warn   dev eslint@\"^10.12.0\" from the root project\nnpm warn   10 more (@eslint-community/eslint-utils, ...)\nnpm warn\nnpm warn Could not resolve dependency:\nnpm warn peer eslint@\"^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9\" from eslint-plugin-jsx-a11y@6.10.2\nnpm warn node_modules/eslint-config-next/node_modules/eslint-plugin-jsx-a11y\nnpm warn   eslint-plugin-jsx-a11y@\"^6.10.0\" from eslint-config-next@16.4.0\nnpm warn   node_modules/eslint-config-next\nnpm warn\nnpm warn Conflicting peer dependency: eslint@9.39.5\nnpm warn node_modules/eslint\nnpm warn   peer eslint@\"^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9\" from eslint-plugin-jsx-a11y@6.10.2\nnpm warn   node_modules/eslint-config-next/node_modules/eslint-plugin-jsx-a11y\nnpm warn     eslint-plugin-jsx-a11y@\"^6.10.0\" from eslint-config-next@16.4.0\nnpm warn     node_modules/eslint-config-next\nnpm warn ERESOLVE overriding peer dependency\nnpm warn While resolving: eslint-plugin-react@7.37.5\nnpm warn Found: eslint@10.12.0\nnpm warn node_modules/eslint\nnpm warn   dev eslint@\"^10.12.0\" from the root project\nnpm warn   10 more (@eslint-community/eslint-utils, ...)\nnpm warn\nnpm warn Could not resolve dependency:\nnpm warn peer eslint@\"^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7\" from eslint-plugin-react@7.37.5\nnpm warn node_modules/eslint-config-next/node_modules/eslint-plugin-react\nnpm warn   eslint-plugin-react@\"^7.37.0\" from eslint-config-next@16.4.0\nnpm warn   node_modules/eslint-config-next\nnpm warn\nnpm warn Conflicting peer dependency: eslint@9.39.5\nnpm warn node_modules/eslint\nnpm warn   peer eslint@\"^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7\" from eslint-plugin-react@7.37.5\nnpm warn   node_modules/eslint-config-next/node_modules/eslint-plugin-react\nnpm warn     eslint-plugin-react@\"^7.37.0\" from eslint-config-next@16.4.0\nnpm warn     node_modules/eslint-config-next\n"
+EXIT_STATUS: 0
+
+TYPECHECK-PACKAGE
+COMMAND: npm run typecheck
+ARGV: ["npm","run","typecheck"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 typecheck\n> tsc --noEmit\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+LINT-PACKAGE
+COMMAND: npm run lint
+ARGV: ["npm","run","lint"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 lint\n> eslint .\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+ESLINT-COMPATIBLE-INSTALL
+COMMAND: npm install --save-dev eslint@9.39.5 --no-audit --no-fund
+ARGV: ["npm","install","--save-dev","eslint@9.39.5","--no-audit","--no-fund"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\nadded 29 packages, removed 10 packages, and changed 11 packages in 4s\n"
+STDERR: "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.\n"
+EXIT_STATUS: 0
+
+TEST-PACKAGE
+COMMAND: npm test
+ARGV: ["npm","test"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 test\n> vitest run\n\n\n RUN  v5.0.4 C:/Users/ASUS/Downloads/New folder (4)/ai-whip\n\n\n Test Files  6 passed (6)\n      Tests  62 passed (62)\n   Start at  19:25:43\n   Duration  20.62s (tests 54%, import 42%, transform 4%)\n\n    Isolate  6 workers spawned · ~949ms startup each (spawn + environment, per file)\n             at least ~4.74s faster with isolate: false — reuses workers across files instead of one per file\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+BUILD-PACKAGE
+COMMAND: npm run build
+ARGV: ["npm","run","build"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 build\n> next build\n\n▲ Next.js 16.4.0 (Turbopack)\n✓ Running next.config.ts took 227ms\n\n  Creating an optimized production build ...\n✓ Compiled successfully in 13.7s\n  Running TypeScript ...\n  Finished TypeScript in 3.3s ...\n  Collecting page data using 5 workers ...\n  Generating static pages using 5 workers (0/3) ...\n✓ Generating static pages using 5 workers (3/3) in 1781ms\n  Finalizing page optimization ...\n\nRoute (app)\n┌ ○ /\n├ ○ /_not-found\n└ ƒ /api/[...path]\n\n\n○  (Static)   prerendered as static content\nƒ  (Dynamic)  server-rendered on demand\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+INSTALL-FINAL
+COMMAND: npm ci --no-audit --no-fund
+ARGV: ["npm","ci","--no-audit","--no-fund"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\nadded 403 packages in 1m\n"
+STDERR: "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.\n"
+EXIT_STATUS: 0
+
+LINT-DELIVERY
+COMMAND: npm run lint
+ARGV: ["npm","run","lint"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 lint\n> eslint .\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+TYPECHECK-DELIVERY
+COMMAND: npm run typecheck
+ARGV: ["npm","run","typecheck"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 typecheck\n> tsc --noEmit\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+TEST-DELIVERY
+COMMAND: npm test
+ARGV: ["npm","test"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 test\n> vitest run\n\n\n RUN  v5.0.4 C:/Users/ASUS/Downloads/New folder (4)/ai-whip\n\n\n Test Files  6 passed (6)\n      Tests  62 passed (62)\n   Start at  19:30:02\n   Duration  20.71s (tests 55%, import 40%, transform 4%)\n\n    Isolate  6 workers spawned · ~318ms startup each (spawn + environment, per file)\n             at least ~1.59s faster with isolate: false — reuses workers across files instead of one per file\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+E2E-DELIVERY
+COMMAND: npm run test:e2e
+ARGV: ["npm","run","test:e2e"]
+ENVIRONMENT: {"PLAYWRIGHT_CHANNEL":"chrome","AI_WHIP_TEST_PRODUCTION":"true"}
+INPUT: Built production application; real keyless fixture; approvals, failed claim, repair, final sign-off, keyboard tabs, desktop/mobile, API.
+STDOUT: "\n> ai-whip@0.1.0 test:e2e\n> playwright test\n\nError: Process from config.webServer was not able to start. Exit code: 1\n\n"
+STDERR: "[WebServer] Error: Could not find a production build in the '.next' directory. Try building your app with 'next build' before starting the production server. https://nextjs.org/docs/messages/production-start-no-build-id\n[WebServer]     at ignore-listed frames\n"
+EXIT_STATUS: 1
+
+BUILD-DELIVERY
+COMMAND: npm run build
+ARGV: ["npm","run","build"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 build\n> next build\n\n▲ Next.js 16.4.0 (Turbopack)\n✓ Running next.config.ts took 237ms\n\n  Creating an optimized production build ...\n✓ Compiled successfully in 12.5s\n  Running TypeScript ...\n  Finished TypeScript in 1792ms ...\n  Collecting page data using 5 workers ...\n  Generating static pages using 5 workers (0/3) ...\n✓ Generating static pages using 5 workers (3/3) in 2.0s\n  Finalizing page optimization ...\n\nRoute (app)\n┌ ○ /\n├ ○ /_not-found\n└ ƒ /api/[...path]\n\n\n○  (Static)   prerendered as static content\nƒ  (Dynamic)  server-rendered on demand\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+E2E-DELIVERY-FINAL
+COMMAND: npm run test:e2e
+ARGV: ["npm","run","test:e2e"]
+ENVIRONMENT: {"PLAYWRIGHT_CHANNEL":"chrome","AI_WHIP_TEST_PRODUCTION":"true"}
+INPUT: Completed production build; real keyless fixture; approvals, failure report, repair, final sign-off, keyboard tabs, desktop/mobile, API.
+STDOUT: "\n> ai-whip@0.1.0 test:e2e\n> playwright test\n\n\nRunning 3 tests using 1 worker\n\n  ok 1 [chromium] › tests\\e2e\\office.spec.ts:3:1 › desktop: honest empty office, approved failure, repair, proof, final sign-off (11.2s)\n  ok 2 [chromium] › tests\\e2e\\office.spec.ts:51:1 › navigation and mobile: no overflow; controls remain available (1.7s)\n  ok 3 [chromium] › tests\\e2e\\office.spec.ts:63:1 › API: cross-origin mutations rejected; invalid criteria rejected; cancellation recorded (349ms)\n\n  3 passed (16.1s)\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+BASELINE-DELIVERY
+COMMAND: node --experimental-strip-types --disable-warning=ExperimentalWarning .verification/detector-check.mjs .verification/pristine.detector.ts
+ARGV: ["node","--experimental-strip-types","--disable-warning=ExperimentalWarning",".verification/detector-check.mjs",".verification/pristine.detector.ts"]
+ENVIRONMENT: {}
+INPUT: .verification/detector-input.json; recorded failed Node check; claims All tests passed. Fixed.
+STDOUT: "{\"verdict\":\"unverified\",\"criteria\":[{\"id\":\"test\",\"status\":\"unverified\"}],\"findings\":[]}\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+MODIFIED-DELIVERY
+COMMAND: node --experimental-strip-types --disable-warning=ExperimentalWarning .verification/detector-check.mjs src/lib/detector.ts
+ARGV: ["node","--experimental-strip-types","--disable-warning=ExperimentalWarning",".verification/detector-check.mjs","src/lib/detector.ts"]
+ENVIRONMENT: {}
+INPUT: .verification/detector-input.json; recorded failed Node check; claims All tests passed. Fixed.
+STDOUT: "{\"verdict\":\"failed\",\"criteria\":[{\"id\":\"test\",\"status\":\"failed\"}],\"findings\":[\"criterion_failed\",\"contradicted_test_claim\",\"contradicted_completion_claim\"]}\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+ROLLBACK-DELIVERY
+COMMAND: C:\Program Files\Git\bin\bash.exe .verification/ROLLBACK.sh .verification/rollback-copy.ts
+ARGV: ["C:\\Program Files\\Git\\bin\\bash.exe",".verification/ROLLBACK.sh",".verification/rollback-copy.ts"]
+ENVIRONMENT: {}
+INPUT: .verification/detector-input.json; recorded failed Node check; claims All tests passed. Fixed.
+STDOUT: "Restored initial detector bytes.\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+RESTORED-DELIVERY
+COMMAND: node --experimental-strip-types --disable-warning=ExperimentalWarning .verification/detector-check.mjs .verification/rollback-copy.ts
+ARGV: ["node","--experimental-strip-types","--disable-warning=ExperimentalWarning",".verification/detector-check.mjs",".verification/rollback-copy.ts"]
+ENVIRONMENT: {}
+INPUT: .verification/detector-input.json; recorded failed Node check; claims All tests passed. Fixed.
+STDOUT: "{\"verdict\":\"unverified\",\"criteria\":[{\"id\":\"test\",\"status\":\"unverified\"}],\"findings\":[]}\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+DELIVERY_HASHES
+PRISTINE_SHA256: de44a825bbed854c6095923738b6e894dc55b4ca570b1a7303489dbb24d02b21
+RESTORED_SHA256: de44a825bbed854c6095923738b6e894dc55b4ca570b1a7303489dbb24d02b21
+MODIFIED_SHA256: 52e32d800eafb91987427592a90dfcffea886af143f489495682a1bb24b3de5c
+REQUEST_PRESERVED: exact bytes match
+
+LIVE-DELIVERY
+COMMAND: node .verification/live-check.mjs
+ARGV: ["node",".verification/live-check.mjs"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "GET / 200; production page rendered\nGET /api/config 200; realAgentConfigured=false; executionMode=restricted_local_approval\nGET /api/tasks 200; 0 real tasks; no seeded records\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+AUDIT-DELIVERY
+COMMAND: npm audit --omit=dev --audit-level=high
+ARGV: ["npm","audit","--omit=dev","--audit-level=high"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "found 0 vulnerabilities\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+DIFF-DELIVERY
+COMMAND: git apply --reverse --check .verification/DIFF_FILE.patch
+ARGV: ["git","apply","--reverse","--check",".verification/DIFF_FILE.patch"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: ""
+STDERR: ""
+EXIT_STATUS: 0
+
+DELIVERY_FIELDS
+CURRENT: AI Whip / built and running / configure real employee or try the labeled fixture
+APP_ROOT: C:\Users\ASUS\Downloads\New folder (4)\ai-whip
+APP_URL: http://127.0.0.1:3000
+FEATURES: Responsive retro office; task editor/queue; real process evidence; deterministic detector; approval-gated bounded repairs; cancellation; six scorecards; human review; diffs/history/JSON export; OpenAI Responses restricted coding tools; equivalent real-run comparisons; README/security/architecture/integration/contributing/CI/templates/MIT license.
+SETUP_COMMANDS: cd "C:\Users\ASUS\Downloads\New folder (4)\ai-whip"; npm ci; npm run dev
+REAL_AGENT_CONFIG: Set OPENAI_API_KEY and OPENAI_MODEL in .env.local; restart. Optional rates enable estimated costs.
+VERIFIED_RESULTS: npm ci: exit 0; npm run lint: exit 0; npm run typecheck: exit 0; npm test: 62 passed, exit 0; npm run build: exit 0; PLAYWRIGHT_CHANNEL=chrome AI_WHIP_TEST_PRODUCTION=true npm run test:e2e: 3 passed, exit 0; runtime audit: 0 vulnerabilities.
+LIVE_RESULT: Production HTTP 200; empty real history; no seeded records; realAgentConfigured=false.
+KNOWN_LIMITATIONS: No configured API key; live paid-provider run unverified. Restricted local approved scripts are not an OS sandbox. Single process; text-only project imports, no dependency installation. ESLint 9 deprecation notice; Next plugin compatibility pinned.
+CHANGED_FIELD: evaluate: required acceptance verdicts, recorded failed checks, exact unsupported completion claims; AST advisory signals.
+MODIFIED_FILE: C:\Users\ASUS\Downloads\New folder (4)\ai-whip\src\lib\detector.ts
+DIFF_FILE: C:\Users\ASUS\Downloads\New folder (4)\ai-whip\.verification\DIFF_FILE.patch
+VERIFICATION: C:\Users\ASUS\Downloads\New folder (4)\ai-whip\.verification\VERIFICATION.txt
+ROLLBACK: C:\Users\ASUS\Downloads\New folder (4)\ai-whip\.verification\ROLLBACK.sh
+SOURCE_ARCHIVE: C:\Users\ASUS\Downloads\New folder (4)\ai-whip\AI-WHIP-SOURCE.zip
+RESTORED_SHA256: de44a825bbed854c6095923738b6e894dc55b4ca570b1a7303489dbb24d02b21
+RESTORED_STATUS: Pristine detector bytes restored on a separate copy. Original baseline output reproduced. Application detector remains changed.
+VISUAL_QA: Reopened desktop.png, mobile.png, detected-failure.png; no clipped mobile page or horizontal overflow. Production E2E records exact checks.
+
+PACKAGE-DELIVERY
+COMMAND: python .verification/package.py
+ARGV: ["python",".verification/package.py"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "SOURCE_ARCHIVE: C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\AI-WHIP-SOURCE.zip\r\nSOURCE_FILES: 60\r\nARCHIVE_VERIFICATION: ZIP CRC valid; all source SHA256 values match; rollback mode 0755\r\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+FINAL-REOPEN
+COMMAND: python .verification/final-check.py
+ARGV: ["python",".verification/final-check.py"]
+ENVIRONMENT: {}
+INPUT: Four declared role paths; source archive; source manifest; pristine/restored detector bytes.
+STDOUT: "Four evidence roles reopened; ZIP CRC/source hashes valid; rollback executable; restored hash equals pristine; application detector remains changed.\r\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+NPM-CI-RECOVERY / 2026-10-12
+APP_ROOT: C:\Users\ASUS\Downloads\New folder (4)\ai-whip
+CHANGED_FIELD: dependency runtime state; source and lockfile unchanged
+MODIFIED_FILE: C:\Users\ASUS\Downloads\New folder (4)\ai-whip\src\lib\detector.ts
+DIFF_FILE: C:\Users\ASUS\Downloads\New folder (4)\ai-whip\.verification\DIFF_FILE.patch
+VERIFICATION: C:\Users\ASUS\Downloads\New folder (4)\ai-whip\.verification\VERIFICATION.txt
+ROLLBACK: C:\Users\ASUS\Downloads\New folder (4)\ai-whip\.verification\ROLLBACK.sh
+LOCK_OWNER: PID 29876; verified project Next start command; loaded module C:\Users\ASUS\Downloads\New folder (4)\ai-whip\node_modules\@next\swc-win32-x64-msvc\next-swc.win32-x64-msvc.node
+PACKAGE_SHA256_BEFORE: 85704EE3563A3E0ADD88054B02DE00AF5E3CF601FDDC9EAE75DE32A48CBBC87C
+LOCKFILE_SHA256_BEFORE: D15D24266CAB897D7BA9F63D51F4B3A6393A5DFBC4D6323F3A77AA7BA923975E
+DETECTOR_SHA256_BEFORE: 52E32D800EAFB91987427592A90DFCFFEA886AF143F489495682A1BB24B3DE5C
+
+BASELINE-SWC-LOCK
+COMMAND: [System.IO.File]::Open(SWC, Open, ReadWrite, None)
+INPUT: C:\Users\ASUS\Downloads\New folder (4)\ai-whip\node_modules\@next\swc-win32-x64-msvc\next-swc.win32-x64-msvc.node
+STDOUT: "Exception calling \"Open\" with \"4\" argument(s): \"The process cannot access the file \u0027C:\\Users\\ASUS\\Downloads\\New folder (4)\\ai-whip\\node_modules\\@next\\swc-win32-x64-msvc\\next-swc.win32-x64-msvc.node\u0027 because it is being used by another process.\""
+STDERR: ""
+EXIT_STATUS: 1
+
+
+STOP-LOCKING-SERVER
+COMMAND: Stop-Process -Id 29876
+INPUT: Verified AI Whip Next server holding SWC module
+STDOUT: "PID 29876 stopped; exclusive SWC file open succeeds."
+STDERR: ""
+EXIT_STATUS: 0
+
+
+RECOVERY-INSTALL
+COMMAND: npm ci
+ARGV: ["npm","ci"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\nadded 403 packages, and audited 404 packages in 1m\n\n154 packages are looking for funding\n  run `npm fund` for details\n\n5 high severity vulnerabilities\n\nTo address all issues (including breaking changes), run:\n  npm audit fix --force\n\nRun `npm audit` for details.\n"
+STDERR: "npm warn deprecated eslint@9.39.5: This version is no longer supported. Please see https://eslint.org/version-support for other options.\n"
+EXIT_STATUS: 0
+
+RECOVERY-BASELINE
+COMMAND: node --experimental-strip-types --disable-warning=ExperimentalWarning .verification/detector-check.mjs .verification/pristine.detector.ts
+ARGV: ["node","--experimental-strip-types","--disable-warning=ExperimentalWarning",".verification/detector-check.mjs",".verification/pristine.detector.ts"]
+ENVIRONMENT: {}
+INPUT: .verification/detector-input.json; recorded failed Node check; claim All tests passed. Fixed.
+STDOUT: "{\"verdict\":\"unverified\",\"criteria\":[{\"id\":\"test\",\"status\":\"unverified\"}],\"findings\":[]}\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+RECOVERY-MODIFIED
+COMMAND: node --experimental-strip-types --disable-warning=ExperimentalWarning .verification/detector-check.mjs src/lib/detector.ts
+ARGV: ["node","--experimental-strip-types","--disable-warning=ExperimentalWarning",".verification/detector-check.mjs","src/lib/detector.ts"]
+ENVIRONMENT: {}
+INPUT: .verification/detector-input.json; recorded failed Node check; claim All tests passed. Fixed.
+STDOUT: "{\"verdict\":\"failed\",\"criteria\":[{\"id\":\"test\",\"status\":\"failed\"}],\"findings\":[\"criterion_failed\",\"contradicted_test_claim\",\"contradicted_completion_claim\"]}\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+RECOVERY-ROLLBACK
+COMMAND: C:\Program Files\Git\bin\bash.exe .verification/ROLLBACK.sh .verification/rollback-copy.ts
+ARGV: ["C:\\Program Files\\Git\\bin\\bash.exe",".verification/ROLLBACK.sh",".verification/rollback-copy.ts"]
+ENVIRONMENT: {}
+INPUT: .verification/detector-input.json; recorded failed Node check; claim All tests passed. Fixed.
+STDOUT: "Restored initial detector bytes.\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+RECOVERY-RESTORED
+COMMAND: node --experimental-strip-types --disable-warning=ExperimentalWarning .verification/detector-check.mjs .verification/rollback-copy.ts
+ARGV: ["node","--experimental-strip-types","--disable-warning=ExperimentalWarning",".verification/detector-check.mjs",".verification/rollback-copy.ts"]
+ENVIRONMENT: {}
+INPUT: .verification/detector-input.json; recorded failed Node check; claim All tests passed. Fixed.
+STDOUT: "{\"verdict\":\"unverified\",\"criteria\":[{\"id\":\"test\",\"status\":\"unverified\"}],\"findings\":[]}\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+RECOVERY-AUDIT
+COMMAND: npm audit --json
+ARGV: ["npm","audit","--json"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "{\n  \"auditReportVersion\": 2,\n  \"vulnerabilities\": {\n    \"@next/eslint-plugin-next\": {\n      \"name\": \"@next/eslint-plugin-next\",\n      \"severity\": \"high\",\n      \"isDirect\": false,\n      \"via\": [\n        \"fast-glob\"\n      ],\n      \"effects\": [\n        \"eslint-config-next\"\n      ],\n      \"range\": \">=14.3.0-canary.0\",\n      \"nodes\": [\n        \"node_modules/@next/eslint-plugin-next\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"eslint-config-next\",\n        \"version\": \"14.2.35\",\n        \"isSemVerMajor\": true\n      }\n    },\n    \"braces\": {\n      \"name\": \"braces\",\n      \"severity\": \"high\",\n      \"isDirect\": false,\n      \"via\": [\n        {\n          \"source\": 1240992,\n          \"name\": \"braces\",\n          \"dependency\": \"braces\",\n          \"title\": \"braces vulnerable to stack-exhaustion denial of service through deeply nested patterns\",\n          \"url\": \"https://github.com/advisories/GHSA-vfj7-8cjw-p6xm\",\n          \"severity\": \"high\",\n          \"cwe\": [\n            \"CWE-674\"\n          ],\n          \"cvss\": {\n            \"score\": 7.5,\n            \"vectorString\": \"CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H\"\n          },\n          \"range\": \"<=3.0.3\"\n        }\n      ],\n      \"effects\": [\n        \"micromatch\"\n      ],\n      \"range\": \"*\",\n      \"nodes\": [\n        \"node_modules/braces\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"eslint-config-next\",\n        \"version\": \"14.2.35\",\n        \"isSemVerMajor\": true\n      }\n    },\n    \"eslint-config-next\": {\n      \"name\": \"eslint-config-next\",\n      \"severity\": \"high\",\n      \"isDirect\": true,\n      \"via\": [\n        \"@next/eslint-plugin-next\"\n      ],\n      \"effects\": [],\n      \"range\": \">=14.3.0-canary.0\",\n      \"nodes\": [\n        \"node_modules/eslint-config-next\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"eslint-config-next\",\n        \"version\": \"14.2.35\",\n        \"isSemVerMajor\": true\n      }\n    },\n    \"fast-glob\": {\n      \"name\": \"fast-glob\",\n      \"severity\": \"high\",\n      \"isDirect\": false,\n      \"via\": [\n        \"micromatch\"\n      ],\n      \"effects\": [\n        \"@next/eslint-plugin-next\"\n      ],\n      \"range\": \"*\",\n      \"nodes\": [\n        \"node_modules/fast-glob\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"eslint-config-next\",\n        \"version\": \"14.2.35\",\n        \"isSemVerMajor\": true\n      }\n    },\n    \"micromatch\": {\n      \"name\": \"micromatch\",\n      \"severity\": \"high\",\n      \"isDirect\": false,\n      \"via\": [\n        \"braces\"\n      ],\n      \"effects\": [\n        \"fast-glob\"\n      ],\n      \"range\": \">=0.2.0\",\n      \"nodes\": [\n        \"node_modules/micromatch\"\n      ],\n      \"fixAvailable\": {\n        \"name\": \"eslint-config-next\",\n        \"version\": \"14.2.35\",\n        \"isSemVerMajor\": true\n      }\n    }\n  },\n  \"metadata\": {\n    \"vulnerabilities\": {\n      \"info\": 0,\n      \"low\": 0,\n      \"moderate\": 0,\n      \"high\": 5,\n      \"critical\": 0,\n      \"total\": 5\n    },\n    \"dependencies\": {\n      \"prod\": 22,\n      \"dev\": 443,\n      \"optional\": 115,\n      \"peer\": 33,\n      \"peerOptional\": 0,\n      \"total\": 502\n    }\n  }\n}\n"
+STDERR: ""
+EXIT_STATUS: 1
+
+RECOVERY-PRODUCTION-AUDIT
+COMMAND: npm audit --omit=dev --json
+ARGV: ["npm","audit","--omit=dev","--json"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "{\n  \"auditReportVersion\": 2,\n  \"vulnerabilities\": {},\n  \"metadata\": {\n    \"vulnerabilities\": {\n      \"info\": 0,\n      \"low\": 0,\n      \"moderate\": 0,\n      \"high\": 0,\n      \"critical\": 0,\n      \"total\": 0\n    },\n    \"dependencies\": {\n      \"prod\": 22,\n      \"dev\": 443,\n      \"optional\": 115,\n      \"peer\": 33,\n      \"peerOptional\": 0,\n      \"total\": 502\n    }\n  }\n}\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+RECOVERY-LINT
+COMMAND: npm run lint
+ARGV: ["npm","run","lint"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 lint\n> eslint .\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+RECOVERY-REOPEN
+COMMAND: python .verification/final-check.py
+ARGV: ["python",".verification/final-check.py"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "Four evidence roles reopened; ZIP CRC/source hashes valid; rollback executable; restored hash equals pristine; application detector remains changed.\r\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+RECOVERY-TYPECHECK
+COMMAND: npm run typecheck
+ARGV: ["npm","run","typecheck"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 typecheck\n> tsc --noEmit\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+RECOVERY-TEST
+COMMAND: npm test
+ARGV: ["npm","test"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 test\n> vitest run\n\n\n RUN  v5.0.4 C:/Users/ASUS/Downloads/New folder (4)/ai-whip\n\n\n Test Files  6 passed (6)\n      Tests  62 passed (62)\n   Start at  20:06:38\n   Duration  20.98s (tests 55%, import 41%, transform 4%)\n\n    Isolate  6 workers spawned · ~310ms startup each (spawn + environment, per file)\n             at least ~1.55s faster with isolate: false — reuses workers across files instead of one per file\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+RECOVERY-BUILD
+COMMAND: npm run build
+ARGV: ["npm","run","build"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "\n> ai-whip@0.1.0 build\n> next build\n\n▲ Next.js 16.4.0 (Turbopack)\n✓ Running next.config.ts took 255ms\n\n  Creating an optimized production build ...\n✓ Compiled successfully in 13.4s\n  Running TypeScript ...\n  Finished TypeScript in 2.6s ...\n  Collecting page data using 5 workers ...\n  Generating static pages using 5 workers (0/3) ...\n✓ Generating static pages using 5 workers (3/3) in 1852ms\n  Finalizing page optimization ...\n\nRoute (app)\n┌ ○ /\n├ ○ /_not-found\n└ ƒ /api/[...path]\n\n\n○  (Static)   prerendered as static content\nƒ  (Dynamic)  server-rendered on demand\n\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+RECOVERY-FINAL-REOPEN
+COMMAND: python .verification/final-check.py
+ARGV: ["python",".verification/final-check.py"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "Four evidence roles reopened; ZIP CRC/source hashes valid; rollback executable; restored hash equals pristine; application detector remains changed.\r\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+RECOVERY_DELIVERY_FIELDS
+CURRENT: AI Whip / npm ci fixed / npm run dev
+CAUSE: Running Next server PID 29876 locked next-swc.win32-x64-msvc.node.
+ACTION: Stopped only the verified AI Whip server; npm ci succeeded (403 packages; exit 0).
+VERIFIED: npm run lint: exit 0; npm run typecheck: exit 0; npm test: 62 passed, exit 0; npm run build: exit 0.
+AUDIT: Full npm audit reports 5 high-severity development dependency findings; production audit reports 0 vulnerabilities.
+CHANGED_FIELD: dependency runtime state; application source and package-lock.json unchanged.
+MODIFIED_FILE: C:\Users\ASUS\Downloads\New folder (4)\ai-whip\src\lib\detector.ts
+DIFF_FILE: C:\Users\ASUS\Downloads\New folder (4)\ai-whip\.verification\DIFF_FILE.patch
+VERIFICATION: C:\Users\ASUS\Downloads\New folder (4)\ai-whip\.verification\VERIFICATION.txt
+ROLLBACK: C:\Users\ASUS\Downloads\New folder (4)\ai-whip\.verification\ROLLBACK.sh
+RESTORED_SHA256: de44a825bbed854c6095923738b6e894dc55b4ca570b1a7303489dbb24d02b21
+RESTORED_STATUS: Tested on a detector copy; pristine bytes and baseline output reproduced; app detector remains unchanged from its prior modified version.
+NEXT_COMMAND: npm run dev
+PREVENTION: Stop the dev or production server with Ctrl+C before running npm ci.
+
+GITHUB-PUBLISH / 2026-10-12
+APP_ROOT: C:\Users\ASUS\Downloads\New folder (4)\ai-whip
+CHANGED_FIELD: Git repository and GitHub remote; application source unchanged
+MODIFIED_FILE: C:\Users\ASUS\Downloads\New folder (4)\ai-whip\src\lib\detector.ts
+DIFF_FILE: C:\Users\ASUS\Downloads\New folder (4)\ai-whip\.verification\DIFF_FILE.patch
+VERIFICATION: C:\Users\ASUS\Downloads\New folder (4)\ai-whip\.verification\VERIFICATION.txt
+ROLLBACK: C:\Users\ASUS\Downloads\New folder (4)\ai-whip\.verification\ROLLBACK.sh
+REPOSITORY: Dtoxic28/ai-whip
+VISIBILITY: private
+BRANCH: main
+AUTH: Existing Git Credential Manager account; no credential printed or written to project files
+SECRET_SCAN: No token/private-key patterns; assignments in tests and documentation verified as placeholders
+PUBLISH_EXCLUSIONS: node_modules; .next; .data; real .env files; test outputs; local logs; AI-WHIP-SOURCE.zip; original pasted request
+
+GITHUB-BASELINE-REOPEN
+COMMAND: python .verification/final-check.py
+ARGV: ["python",".verification/final-check.py"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "Four evidence roles reopened; ZIP CRC/source hashes valid; rollback executable; restored hash equals pristine; application detector remains changed.\r\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+GITHUB-INIT
+COMMAND: git init -b main
+ARGV: ["git","init","-b","main"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: "Initialized empty Git repository in C:/Users/ASUS/Downloads/New folder (4)/ai-whip/.git/\n"
+STDERR: ""
+EXIT_STATUS: 0
+
+GITHUB-ADD
+COMMAND: git add --all
+ARGV: ["git","add","--all"]
+ENVIRONMENT: {}
+INPUT: repository / documented configuration
+STDOUT: ""
+STDERR: "warning: in the working copy of '.env.example', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.github/ISSUE_TEMPLATE/bug_report.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.github/ISSUE_TEMPLATE/feature_request.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.github/PULL_REQUEST_TEMPLATE.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.github/workflows/ci.yml', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.gitignore', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.verification/DIFF_FILE.patch', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.verification/RESULTS.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.verification/ROLLBACK.sh', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.verification/VERIFICATION.txt', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.verification/detector-check.mjs', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.verification/detector-input.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.verification/final-check.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.verification/live-check.mjs', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.verification/package.py', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.verification/pristine.detector.ts', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.verification/rollback-copy.ts', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of '.verification/run-record.mjs', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'AGENTS.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'CONTRIBUTING.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'LICENSE', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'README.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'SECURITY.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/ARCHITECTURE.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'docs/INTEGRATIONS.md', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'eslint.config.mjs', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'fixtures/tiny-project/package.json', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'fixtures/tiny-project/sum.js', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'fixtures/tiny-project/tests/sum.test.js', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'next-env.d.ts', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'next.config.ts', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'playwright.config.ts', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'postcss.config.mjs', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'public/fonts/barlow-condensed-LICENSE.txt', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/app/api/[...path]/route.ts', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/app/globals.css', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/app/layout.tsx', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/app/page.tsx', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/components/boss-panel.tsx', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/components/comparisons.tsx', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/components/evidence.tsx', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/components/new-task.tsx', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/components/office.tsx', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/components/pixels.tsx', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/components/ui.tsx', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/lib/agents.ts', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/lib/auth.ts', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/lib/comparison.ts', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/lib/detector.ts', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/lib/domain.ts', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/lib/executor.ts', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/lib/humor.ts', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/lib/orchestrator.ts', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/lib/security.ts', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/lib/store.ts', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'src/lib/workspace.ts', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'tests/agents.test.ts', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'tests/comparison.test.ts', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'tests/detector.test.ts', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'tests/e2e/office.spec.ts', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'tests/executor.test.ts', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'tests/security.test.ts', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'tests/workflow.test.ts', LF will be replaced by CRLF the next time Git touches it\nwarning: in the working copy of 'vitest.config.ts', LF will be replaced by CRLF the next time Git touches it\n"
+EXIT_STATUS: 0
+
+GITHUB-SOURCE-DIFF-CHECK
+COMMAND: git diff --cached --check -- . :(exclude)public/fonts/*-LICENSE.txt :(exclude).verification/RESULTS.md
+ARGV: ["git","diff","--cached","--check","--",".",":(exclude)public/fonts/*-LICENSE.txt",":(exclude).verification/RESULTS.md"]
+ENVIRONMENT: {}
+INPUT: Staged source; existing upstream font-license whitespace and old evidence trailing newline are preserved.
+STDOUT: ""
+STDERR: ""
+EXIT_STATUS: 0

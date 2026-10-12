@@ -1,0 +1,13 @@
+import { afterEach, expect, it } from "vitest";
+import { mkdtemp, writeFile, rm } from "node:fs/promises";
+import path from "node:path";
+import os from "node:os";
+import { runCheck } from "../src/lib/executor";
+import type { Check } from "../src/lib/domain";
+let root: string;
+afterEach(async () => { if (root) await rm(root, { recursive: true, force: true }); });
+const check: Check = { id: "suite", label: "Actual Node tests", kind: "test", command: ["node", "--test", "actual.test.cjs"], scope: "full" };
+it("records real stdout, failure, parsed counts, and duration", async () => { root = await mkdtemp(path.join(os.tmpdir(), "whip-process-")); await writeFile(path.join(root, "actual.test.cjs"), "const {test}=require('node:test'); const assert=require('node:assert/strict'); test('real failure',()=>assert.equal(2,3));"); const result = await runCheck(root, check, new AbortController().signal, 5000); expect(result.exitCode).toBe(1); expect(result.tests?.failed).toBe(1); expect(result.stdout).toContain("real failure"); expect(result.durationMs).toBeGreaterThan(0); });
+it("strips server secrets from child environment", async () => { root = await mkdtemp(path.join(os.tmpdir(), "whip-env-")); await writeFile(path.join(root, "env.cjs"), "console.log(process.env.OPENAI_API_KEY || 'NO_KEY');"); const result = await runCheck(root, { ...check, kind: "custom", command: ["node", "env.cjs"] }, new AbortController().signal, 5000); expect(result.stdout.trim()).toBe("NO_KEY"); });
+it("cancels a real process", async () => { root = await mkdtemp(path.join(os.tmpdir(), "whip-cancel-")); await writeFile(path.join(root, "wait.cjs"), "setInterval(()=>{},1000);"); const controller = new AbortController(); const operation = runCheck(root, { ...check, kind: "custom", command: ["node", "wait.cjs"] }, controller.signal, 10000); setTimeout(() => controller.abort(), 300); const result = await operation; expect(result.exitCode).not.toBe(0); expect(result.durationMs).toBeLessThan(5000); });
+it("times out real execution", async () => { root = await mkdtemp(path.join(os.tmpdir(), "whip-timeout-")); await writeFile(path.join(root, "wait.cjs"), "setInterval(()=>{},1000);"); const result = await runCheck(root, { ...check, kind: "custom", command: ["node", "wait.cjs"] }, new AbortController().signal, 250); expect(result.timedOut).toBe(true); expect(result.exitCode).not.toBe(0); });

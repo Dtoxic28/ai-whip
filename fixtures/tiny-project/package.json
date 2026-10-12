@@ -1,0 +1,1 @@
+{"name":"whip-fixture","private":true,"type":"module","scripts":{"test":"node --test tests/sum.test.js"}}

@@ -1,0 +1,32 @@
+import { describe, expect, it } from "vitest";
+import { evaluate, parseTestCounts, superficialFindings } from "../src/lib/detector";
+import type { CheckResult, Criterion } from "../src/lib/domain";
+const criterion: Criterion = { id: "suite", label: "Complete suite", kind: "check_passes", checkId: "tests", required: true };
+const check: CheckResult = { id: "tests", label: "Node tests", kind: "test", command: ["node", "--test", "tests.js"], scope: "full", exitCode: 0, stdout: "# tests 3\n# pass 3\n# fail 0\n# skipped 0", stderr: "", durationMs: 15, timedOut: false, outputLimited: false, tests: { total: 3, passed: 3, failed: 0, skipped: 0 } };
+const inspect = (checks: CheckResult[], claim = "") => evaluate({ criteria: [criterion], checks, claim, files: {} });
+describe("evidence, not confidence", () => {
+  it("leaves nonexistent execution unverified", () => { const result = inspect([], "All tests passed."); expect(result.verdict).toBe("unverified"); expect(result.findings.some(f => f.code === "unsupported_test_claim")).toBe(true); });
+  it("records failed exit and the exact contradictory claim", () => { const result = inspect([{ ...check, exitCode: 1 }], "All tests passed. Fixed."); expect(result.verdict).toBe("failed"); expect(result.findings.find(f => f.code === "contradicted_test_claim")?.evidence).toContain('"All tests passed."'); });
+  it("passes a complete, executed, unskipped suite", () => expect(inspect([check]).verdict).toBe("passed"));
+  it.each(["partial", "unknown"] as const)("does not equate a %s suite with all tests", scope => expect(inspect([{ ...check, scope }], "All tests passed.").verdict).toBe("unverified"));
+  it("rejects skipped coverage", () => expect(inspect([{ ...check, tests: { total: 3, passed: 2, failed: 0, skipped: 1 } }]).verdict).toBe("unverified"));
+  it("does not infer test counts from exit zero", () => expect(inspect([{ ...check, tests: null }]).verdict).toBe("unverified"));
+  it("does not accept an empty suite", () => expect(inspect([{ ...check, tests: { total: 0, passed: 0, failed: 0, skipped: 0 } }]).verdict).toBe("unverified"));
+  it("does not accept truncated or timed-out output", () => { expect(inspect([{ ...check, timedOut: true }]).verdict).toBe("unverified"); expect(inspect([{ ...check, outputLimited: true }]).verdict).toBe("unverified"); });
+  it("does not turn a killed timeout into a verified check failure", () => expect(inspect([{ ...check, exitCode: 1, timedOut: true }]).verdict).toBe("unverified"));
+  it("fails an executed extra quality check even without a dedicated criterion", () => expect(inspect([check, { ...check, id: "lint", kind: "lint", exitCode: 1 }]).verdict).toBe("failed"));
+  it("allows explicit human review of an AST advisory, never a failing test", () => {
+    const changes = [{ path: "a.ts", before: "function f(x: number) { return x + 1; }", after: "function f() { return 1; }" }];
+    const first = evaluate({ criteria: [criterion], checks: [check], files: {}, changes, claim: "" });
+    expect(first.verdict).toBe("unverified");
+    expect(evaluate({ criteria: [criterion], checks: [check], files: {}, changes, claim: "", reviewedFindings: first.findings.map(f => f.id) }).verdict).toBe("passed");
+    expect(evaluate({ criteria: [criterion], checks: [{ ...check, exitCode: 1 }], files: {}, changes, claim: "", reviewedFindings: first.findings.map(f => f.id) }).verdict).toBe("failed");
+  });
+  it("does not accuse a negated testing claim", () => expect(inspect([], "Not tested. No tests executed.").findings.filter(f => /claim/.test(f.code))).toHaveLength(0));
+  it("checks actual missing files", () => { const result = evaluate({ criteria: [{ id: "feature", label: "Feature exists", kind: "file_exists", path: "feature.ts", required: true }], checks: [], files: {}, claim: "Implemented." }); expect(result.verdict).toBe("failed"); });
+  it("keeps a visual behavior criterion unverified until human review", () => { const c: Criterion = { id: "visual", label: "Button really works", kind: "review", required: true }; expect(evaluate({ criteria: [c], checks: [], files: {}, claim: "" }).verdict).toBe("unverified"); expect(evaluate({ criteria: [c], checks: [], files: {}, claim: "", manualApprovals: [c.id] }).verdict).toBe("passed"); });
+  it("detects empty implementations", () => { const c: Criterion = { id: "impl", label: "No stubs", kind: "no_placeholders", path: "feature.ts", required: true }; expect(evaluate({ criteria: [c], checks: [], files: { "feature.ts": "export function feature() {}" }, claim: "" }).verdict).toBe("failed"); });
+  it("parses only recorded Node TAP counts", () => { expect(parseTestCounts(check.stdout)).toEqual(check.tests); expect(parseTestCounts("Looks good. All tests pass.")).toBeNull(); });
+  it("flags AST assertion weakening without declaring misconduct", () => { const findings = superficialFindings([{ path: "tests/a.test.ts", before: "assert.equal(sum(1, 2), 3);", after: "test.skip('sum', () => {});" }]); expect(findings.map(f => f.code)).toEqual(expect.arrayContaining(["weakened_assertions", "skipped_tests"])); expect(findings.every(f => f.severity === "warning")).toBe(true); });
+  it("flags empty catches and hardcoded replacement", () => { const findings = superficialFindings([{ path: "a.ts", before: "function f(x: number) { return x + 1; }", after: "function f(x: number) { try {} catch {} return 1; }" }]); expect(findings.map(f => f.code)).toEqual(expect.arrayContaining(["silent_exception", "hardcoded_replacement"])); });
+});

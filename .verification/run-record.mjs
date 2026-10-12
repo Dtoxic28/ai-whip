@@ -1,0 +1,13 @@
+import { spawnSync } from "node:child_process";
+import { appendFileSync, writeFileSync } from "node:fs";
+import { dirname, join } from "node:path";
+const [label, program, ...args] = process.argv.slice(2);
+const exe = program === "npm" || program === "node" ? process.execPath : program;
+const argv = program === "npm" ? [join(dirname(process.execPath), "node_modules/npm/bin/npm-cli.js"), ...args] : args;
+const result = spawnSync(exe, argv, { encoding: "utf8", maxBuffer: 16 * 1024 * 1024, timeout: 180000, env: process.env });
+const record = `\n${label}\nCOMMAND: ${program} ${args.join(" ")}\nARGV: ${JSON.stringify([program, ...args])}\nENVIRONMENT: ${JSON.stringify(Object.fromEntries(["PLAYWRIGHT_CHANNEL", "AI_WHIP_TEST_PRODUCTION", "AI_WHIP_DATA_DIR"].filter(key => process.env[key]).map(key => [key, process.env[key]])))}\nINPUT: ${process.env.VERIFICATION_INPUT || "repository / documented configuration"}\nSTDOUT: ${JSON.stringify(result.stdout || "")}\nSTDERR: ${JSON.stringify(result.stderr || "")}\nEXIT_STATUS: ${result.status ?? "spawn_error"}\n`;
+appendFileSync(".verification/VERIFICATION.txt", record);
+writeFileSync(`.verification/${label.replace(/[^a-z0-9_-]/gi, "-")}.log`, (result.stdout || "") + (result.stderr || ""));
+console.log(record);
+if (result.error) console.error(result.error.message);
+process.exitCode = result.status ?? 1;

@@ -1,0 +1,39 @@
+{
+  "criteria": [
+    {
+      "id": "test",
+      "kind": "check_passes",
+      "label": "Tests pass",
+      "required": true,
+      "checkId": "tests"
+    }
+  ],
+  "checks": [
+    {
+      "id": "tests",
+      "label": "Node tests",
+      "kind": "test",
+      "command": [
+        "node",
+        "--test"
+      ],
+      "scope": "full",
+      "exitCode": 1,
+      "stdout": "# tests 1\n# pass 0\n# fail 1",
+      "stderr": "",
+      "durationMs": 12,
+      "timedOut": false,
+      "outputLimited": false,
+      "tests": {
+        "total": 1,
+        "passed": 0,
+        "failed": 1,
+        "skipped": 0
+      }
+    }
+  ],
+  "files": [],
+  "claim": "All tests passed. Fixed.",
+  "previous": [],
+  "manualApprovals": []
+}
